@@ -9,24 +9,26 @@ type Todo = {
 
 type TodoProps = {
     todo: Todo
+    handleDeleteTodo: (id: string) => void
 }
 
-const Row = ({ todo: { task, isCompleted, tag }}: TodoProps) => {
+export const Row = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo}: TodoProps) => {
   return (
     <div>
+        <input 
+            type="checkbox"
+            checked={isCompleted}
+            onChange={() => null}
+        />
         <p>{task}</p>
         <div>
-            <button aria-label="Delete a todo" onClick={() => null}>
+            <button aria-label="Delete a todo" onClick={() => handleDeleteTodo(id)}>
                 X
             </button>
-            <input 
-                type="checkbox"
-                checked={isCompleted}
-                onChange={() => null}
-            />
+            <button>
+                {tag}
+            </button>
         </div>
     </div>
   )
 }
-
-export default Row
