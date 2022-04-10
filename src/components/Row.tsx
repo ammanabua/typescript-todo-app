@@ -10,9 +10,10 @@ type Todo = {
 type TodoProps = {
     todo: Todo
     handleDeleteTodo: (id: string) => void
+    handleFilterTodo: (tag: string) => void
 }
 
-export const Row = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo}: TodoProps) => {
+export const Row = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo, handleFilterTodo}: TodoProps) => {
   return (
     <div>
         <input 
@@ -25,7 +26,7 @@ export const Row = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo}: T
             <button aria-label="Delete a todo" onClick={() => handleDeleteTodo(id)}>
                 X
             </button>
-            <button>
+            <button onClick={() => handleFilterTodo(tag)}>
                 {tag}
             </button>
         </div>

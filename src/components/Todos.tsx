@@ -36,10 +36,15 @@ export const Todos = () => {
         const updatedTodos = todos.filter((todo) => todo.id !== id)
         setTodos(updatedTodos)
     }
+
+    const handleFilterTodo = (tag: string) => {
+        const updatedTodos = todos.filter((todo) => todo.tag === tag)
+        setTodos(updatedTodos)
+    }
   return (
     <section>
         {todos.map((todo) => (
-            <Row key={todo.id} todo={todo} handleDeleteTodo={handleDeleteTodo} />
+            <Row key={todo.id} todo={todo} handleDeleteTodo={handleDeleteTodo} handleFilterTodo={handleFilterTodo} />
         ))}
     </section>
   )
