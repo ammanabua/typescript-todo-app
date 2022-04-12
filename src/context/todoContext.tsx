@@ -1,13 +1,15 @@
 import React, { useState, ChangeEvent, FormEvent, } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { TodoProps, Todo } from '../@types/todo'
+import useLocalStorage from '../hooks/use-local-storage';
 
 
 export const TodoContext = React.createContext<TodoProps | null>(null);
 
 const TodoProvider: React.FC<React.ReactNode> = ({ children }) => {
 
-    const [todos, setTodos] = React.useState<Todo[]>([
+    const [todos, setTodos] = useLocalStorage<Todo[]>('todos', 
+    [
         {
             id: "1",
             task: "Buy something from the market",

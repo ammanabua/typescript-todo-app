@@ -29,15 +29,19 @@ export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, han
         </div>
         <div
             className='w-1/6 flex justify-between items-center'>
-            <button aria-label="Delete a todo" onClick={() => handleDeleteTodo(id)}>
-                X
-            </button>
+            <div>
             {tag === "Green" ? 
                 <button onClick={() => handleFilterTodo(tag)} className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-green outline-none border-none'>
-            </button>
-            : 
-            <button onClick={() => handleFilterTodo(tag)} className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-purple outline-none border-none'>
-            </button>}
+                </button>
+                : 
+                <button onClick={() => handleFilterTodo(tag)} className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-purple outline-none border-none'>
+                </button>}
+            </div>
+            <div className='invisible'>
+                <button aria-label="Delete a todo" onClick={() => handleDeleteTodo(id)}>
+                    X
+                </button>
+            </div>
         </div>
     </div>
   )
