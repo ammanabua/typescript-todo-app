@@ -1,8 +1,10 @@
 
-import React, { ChangeEvent, FormEvent, HTMLInputTypeAttribute, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { AddTodo } from './AddTodo';
 import { Row } from './Row';
 import { v4 as uuidv4 } from 'uuid'
+import { Todo, TodoProps } from '../@types/todo';
+import { TodoContext } from "../context/todoContext"
 
 
 // const data = [
@@ -32,81 +34,27 @@ import { v4 as uuidv4 } from 'uuid'
 //     },
 // ]
 
-type Todo = {
-    id: string
-    task: string
-    tag: string
-    isCompleted: boolean
-}
+
 
 export const Todos = () => {
-    const [todos, setTodos] = useState<Todo[]>([]);
-    const [task, setTask] = useState("");
-    const [tag, setTag] = useState("");
 
+    const { todos, handleFilterTodo, handleCheckTodo, handleDeleteTodo } = React.useContext(TodoContext) as TodoProps;
+    
     const todosLength = todos.length;
     const hasTodos = todos.length > 0;
     const remainingTodos = todos.filter((todo) => !todo.isCompleted).length
+
+    let newDate = new Date();
+    let day = newDate.getDay();
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear()
     
-
-    const handleAddTodo = (todo: Todo) => {
-        const updatedTodos = [...todos, todo];
-        setTodos(updatedTodos);
-        console.log(updatedTodos);
-        setTask("")
-    }
-
-    const handleChange = (e: ChangeEvent) => { 
-        const { value } = e.target as HTMLInputElement
-        setTask(value)
-    }
-
-    const handleSubmitTodo = (e: FormEvent) => {
-        e.preventDefault()
-
-        const todo = {
-            id: uuidv4(),
-            task: task,
-            tag: tag,
-            isCompleted: false,
-        }
-        task && handleAddTodo(todo)
-    }
-
-    const handleDeleteTodo = (id: string) => {
-        const updatedTodos = todos.filter((todo) => todo.id !== id)
-        setTodos(updatedTodos)
-    }
-
-    const handleFilterTodo = (tag: string) => {
-        const updatedTodos = todos.filter((todo) => todo.tag === tag)
-        setTodos(updatedTodos)
-    }
-
-    const handleCheckTodo = (id: string) => {
-        const updatedTodos = todos.map((todo) => {
-            if(todo.id === id) {
-                return {
-                    ...todo,
-                    isCompleted: !todo.isCompleted
-                }
-            }
-            return todo
-        })
-
-        setTodos(updatedTodos)
-    }
-
-    const handleAddTag = (e: FormEvent) => {
-        const { value } = e.target as HTMLInputElement
-        setTag(value)
-        console.log(value);
-    }
 
   return (
     <section className='w-[500px] xs:w-1/4 m-8 max-w-2xl flex flex-col items-center'>
         <div className='bg-orange h-20 p-6 rounded-t-[40px] w-full'>
-            <p className='text-center text-white text-xl font-medium'>Today, Fri Oct 08 2021</p>
+            <p className='text-center text-white text-xl font-medium'>{`Today, ${day} ${month} ${date} ${year}`}</p>
         </div>
         {!hasTodos && (
             <p className='m-5 text-xl text-[#c00] uppercase'>Please add todo!</p>
@@ -117,24 +65,19 @@ export const Todos = () => {
                     <p className='text-orange'>{`Showing ${todosLength} tasks`}</p>
                 </div>
                 <div>
-                    <button onClick={() => handleFilterTodo(tag)} className='h-8 w-8 mr-3 rounded-xl bg-green outline-none border-none'></button>
-                    <button onClick={() => handleFilterTodo(tag)} className='h-8 w-8 mr-3 rounded-xl bg-purple outline-none border-none'></button>
+                    <button onClick={() => handleFilterTodo("Green")} className='h-8 w-8 mr-3 rounded-xl bg-green outline-none border-none'></button>
+                    <button onClick={() => handleFilterTodo("Purple")} className='h-8 w-8 mr-3 rounded-xl bg-purple outline-none border-none'></button>
                 </div>
             </div>
         )}
-        {todos.map((todo) => (
+        {todos.map((todo: Todo) => (
             <Row key={todo.id} 
-            todo={todo} 
-            handleDeleteTodo={handleDeleteTodo} 
+            todo={todo}
+            handleCheckTodo={handleCheckTodo}
             handleFilterTodo={handleFilterTodo}
-            handleCheckTodo={handleCheckTodo} />
+            handleDeleteTodo={handleDeleteTodo} />
         ))}
-        <AddTodo 
-            task={task}
-            tag={tag}
-            handleChange={handleChange}
-            handleSubmitTodo={handleSubmitTodo}
-            handleAddTag={handleAddTag} />
+        <AddTodo />
     </section>
   )
 }

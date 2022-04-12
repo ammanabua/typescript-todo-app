@@ -1,26 +1,22 @@
 import React from 'react'
+import { Todo } from '../@types/todo';
 
-type Todo = {
-    id: string,
-    task: string,
-    tag: string,
-    isCompleted: boolean
+
+type Props = {
+    todo: Todo;
+    handleCheckTodo: (id: string) => void;
+    handleFilterTodo: (id: string) => void;
+    handleDeleteTodo: (id: string) => void;
 }
 
-type TodoProps = {
-    todo: Todo
-    handleDeleteTodo: (id: string) => void
-    handleFilterTodo: (tag: string) => void
-    handleCheckTodo: (id: string) => void
-}
 
-export const Row = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo, handleFilterTodo, handleCheckTodo}: TodoProps) => {
+export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo, handleFilterTodo, handleCheckTodo}) => {
   return (
     <div
         className='
-            flex w-full p-5 justify-between bg-white border-t-2 border-border-grey align-middle'>
+            flex w-full p-5 justify-between bg-white border-t-2 border-border-grey align-middle cursor-pointer'>
         
-        <div className='flex items-center'>
+        <div className='flex items-center w-full' onClick={() => handleCheckTodo(id)}>
             <input
                 className='bg-check-grey rounded-full border-2 border-blue focus:ring-0 h-8 w-8 transition duration-200 float-left cursor-pointer mr-2' 
                 type="checkbox"
