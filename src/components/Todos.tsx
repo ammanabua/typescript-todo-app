@@ -13,7 +13,7 @@ export const Todos = () => {
     
 
   return (
-    <section className='w-[500px] xs:w-1/4 m-8 max-w-2xl flex flex-col items-center'>
+    <section className='w-[300px] md:w-[400px] lg:w-[500px] m-8 flex flex-col items-center justify-center'>
         <Top />
         {todos.map((todo: Todo) => (
             <Row key={todo.id} 

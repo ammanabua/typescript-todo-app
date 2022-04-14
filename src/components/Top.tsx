@@ -21,8 +21,8 @@ export const Top: React.FC = () => {
     let newDate = new Date();
 
     return (
-      <section className='shadow-[0px 18px 24px rgb(0 0 0 / 0.05)'>
-        <div className='w-[500px] bg-orange h-20 p-6 rounded-t-[40px] w-full'>
+      <section>
+        <div className='w-[300px] md:w-[400px] lg:w-[500px] bg-orange h-20 p-6 rounded-t-[40px] w-full'>
             <p className='text-center text-white text-xl font-medium'>{`Today, ${newDate.toDateString()}`}</p>
         </div>
         {!hasTodos && (
@@ -33,7 +33,7 @@ export const Top: React.FC = () => {
                 <div>
                     <p className='text-orange'>{location.pathname === "/filter" ? `Filtering and showing ${filteredLength} tasks` : `Showing ${todosLength} tasks`}</p>
                 </div>
-                <div>
+                <div className='flex'>
                     <Link to="/filter">
                     <button onClick={() => handleFilterTodo("Green")} className='focus:outline-2 focus:outline-[#DEDEDE] h-8 w-8 mr-3 rounded-xl bg-green outline-none border-none'></button>
                     </Link>
