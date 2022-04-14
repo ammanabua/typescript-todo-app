@@ -5,18 +5,17 @@ import { Todo } from '../@types/todo';
 type Props = {
     todo: Todo;
     handleCheckTodo: (id: string) => void;
-    handleFilterTodo: (id: string) => void;
     handleDeleteTodo: (id: string) => void;
 }
 
 
-export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo, handleFilterTodo, handleCheckTodo}) => {
+export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo, handleCheckTodo}) => {
   return (
     <div
         className='
-            flex w-full p-5 justify-between bg-white border-t-2 border-border-grey align-middle cursor-pointer'>
+            flex w-full p-5 justify-between bg-white border-t-2 border-border-grey align-middle cursor-pointer' onClick={() => handleCheckTodo(id)}>
         
-        <div className='flex items-center w-full' onClick={() => handleCheckTodo(id)}>
+        <div className='flex items-center w-full'>
             <input
                 className='bg-check-grey rounded-full border-2 border-blue focus:ring-0 h-8 w-8 transition duration-200 float-left cursor-pointer mr-2' 
                 type="checkbox"
@@ -28,20 +27,13 @@ export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, han
                 ml-2 text-xl font-normal'>{task}</p>
         </div>
         <div
-            className='w-1/6 flex justify-between items-center'>
-            <div>
+            className='w-1/6 flex justify-end items-center'>
             {tag === "Green" ? 
-                <button onClick={() => handleFilterTodo(tag)} className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-green outline-none border-none'>
+                <button className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-green outline-none border-none'>
                 </button>
                 : 
-                <button onClick={() => handleFilterTodo(tag)} className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-purple outline-none border-none'>
+                <button className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-purple outline-none border-none'>
                 </button>}
-            </div>
-            <div className='invisible'>
-                <button aria-label="Delete a todo" onClick={() => handleDeleteTodo(id)}>
-                    X
-                </button>
-            </div>
         </div>
     </div>
   )

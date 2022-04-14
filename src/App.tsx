@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from "./components/Home";
-import { Filter } from "./components/Filter"
+import { Filter } from './components/Filter';
 import { NavLink } from 'react-router-dom';
 import TodoProvider from './context/todoContext';
+
 
 function App() {
 

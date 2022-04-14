@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react'
-import { TodoProps, Todo } from '../@types/todo'
+import { TodoProps } from '../@types/todo'
 import { TodoContext } from '../context/todoContext'
 import { v4 as uuidv4 } from "uuid"
 
@@ -7,32 +7,9 @@ import { v4 as uuidv4 } from "uuid"
 export const AddTodo: React.FC = () => {
 
 
-    const { handleAddTodo } = React.useContext(TodoContext) as TodoProps;
+    const { handleSubmitTodo, handleChange, handleAddTag } = React.useContext(TodoContext) as TodoProps;
 
-    const [task, setTask] = React.useState("");
-    const [tag, setTag] = React.useState("");
-
-    const handleChange = (e: ChangeEvent) => {
-        const { value } = e.target as HTMLInputElement
-        setTask(value)
-      }
-
-    const handleSubmitTodo = (e: FormEvent) => {
-        e.preventDefault()
-
-        const todo = {
-            id: uuidv4(),
-            task: task,
-            tag: tag,
-            isCompleted: false,
-        }
-        task && handleAddTodo(todo)
-    }
-
-    const handleAddTag = (e: FormEvent) => {
-        const { value } = e.target as HTMLInputElement
-        setTag(value)
-    }
+    
 
   return(
     <form onSubmit={handleSubmitTodo} className="w-full flex justify-between items-center p-8 border-t-2 border-border-grey rounded-b-[40px]">
