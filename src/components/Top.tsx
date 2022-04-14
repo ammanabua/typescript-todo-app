@@ -1,7 +1,7 @@
 import React from 'react';
-import { Todo, TodoProps } from '../@types/todo';
+import { TodoProps } from '../@types/todo';
 import { TodoContext } from "../context/todoContext"
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 
@@ -21,7 +21,7 @@ export const Top: React.FC = () => {
     let newDate = new Date();
 
     return (
-      <section>
+      <section className='shadow-[0px 18px 24px rgb(0 0 0 / 0.05)'>
         <div className='w-[500px] bg-orange h-20 p-6 rounded-t-[40px] w-full'>
             <p className='text-center text-white text-xl font-medium'>{`Today, ${newDate.toDateString()}`}</p>
         </div>
@@ -35,19 +35,14 @@ export const Top: React.FC = () => {
                 </div>
                 <div>
                     <Link to="/filter">
-                    <button onClick={() => handleFilterTodo("Green")} className='h-8 w-8 mr-3 rounded-xl bg-green outline-none border-none'></button>
+                    <button onClick={() => handleFilterTodo("Green")} className='focus:outline-2 focus:outline-[#DEDEDE] h-8 w-8 mr-3 rounded-xl bg-green outline-none border-none'></button>
                     </Link>
                     <Link to="/filter">
-                    <button onClick={() => handleFilterTodo("Purple")} className='h-8 w-8 mr-3 rounded-xl bg-purple outline-none border-none'></button>
+                    <button onClick={() => handleFilterTodo("Purple")} className='focus:outline-2 focus:outline-[#DEDEDE] h-8 w-8 mr-3 rounded-xl bg-purple outline-none border-none'></button>
                     </Link>
                 </div>
             </div>
         )}
       </section>
-        // <ul>
-        //     Filter
-        //     <li onClick={() => currentFilter('Green')}>All</li>
-        //     <li onClick={() => currentFilter('Purple')}>Completed</li>
-        // </ul>
     )
 }

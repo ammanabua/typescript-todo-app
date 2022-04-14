@@ -9,13 +9,15 @@ type Props = {
 }
 
 
-export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo, handleCheckTodo}) => {
+
+export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, handleDeleteTodo, handleCheckTodo }) => {
+
   return (
     <div
         className='
-            flex w-full p-5 justify-between bg-white border-t-2 border-border-grey align-middle cursor-pointer' onClick={() => handleCheckTodo(id)}>
+            flex w-full p-5 justify-between bg-white border-t-2 border-border-grey align-middle cursor-pointer'>
         
-        <div className='flex items-center w-full'>
+        <div className='flex items-center w-full' onClick={() => handleCheckTodo(id)}>
             <input
                 className='bg-check-grey rounded-full border-2 border-blue focus:ring-0 h-8 w-8 transition duration-200 float-left cursor-pointer mr-2' 
                 type="checkbox"
@@ -34,6 +36,7 @@ export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, han
                 : 
                 <button className='h-[18px] w-[18px] rounded-[6.7px] mr-3 rounded-xl bg-purple outline-none border-none'>
                 </button>}
+                <button className='hidden' onClick={() => handleDeleteTodo(id)}>X</button>
         </div>
     </div>
   )

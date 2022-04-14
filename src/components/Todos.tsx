@@ -9,7 +9,7 @@ import { Top } from './Top';
 
 export const Todos = () => {
 
-    const { todos, handleFilterTodo, handleCheckTodo, handleDeleteTodo } = React.useContext(TodoContext) as TodoProps
+    const { todos, handleCheckTodo, handleDeleteTodo } = React.useContext(TodoContext) as TodoProps
     
 
   return (
