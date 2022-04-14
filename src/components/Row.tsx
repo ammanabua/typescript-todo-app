@@ -25,8 +25,7 @@ export const Row: React.FC<Props> = ({ todo: { id, task, isCompleted, tag }, han
                 onChange={() => handleCheckTodo(id)}
             />
             <p
-                className='
-                ml-2 text-xl font-normal'>{task}</p>
+                className='text-text-grey ml-2 text-xl font-normal'>{task}</p>
         </div>
         <div
             className='w-1/6 flex justify-end items-center'>

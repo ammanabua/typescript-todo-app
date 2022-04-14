@@ -39,7 +39,7 @@ export const AddTodo: React.FC = () => {
   return(
     <form onSubmit={handleSubmitTodo} className="w-full flex justify-between items-center p-8 border-t-2 border-border-grey rounded-b-[40px]">
       <div className='flex'>
-          <button className=' text-[#CC634F]' type="submit" aria-label="Add a task">
+          <button className='text-3xl text-[#CC634F]' type="submit" aria-label="Add a task">
           +
           </button>
           <input value={task} className='border-none ml-4 text-xl w-full' type="text" name="task" onChange={handleChange} placeholder="Add a task" />

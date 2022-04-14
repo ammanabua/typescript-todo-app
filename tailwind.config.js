@@ -13,9 +13,16 @@ module.exports = {
       "check-grey": "#F2F4F9",
       "border-grey": "#D8D8D8",
       "tag-outline": "#F5F5F5",
-      "place-grey": "#B3B3B3"
+      "place-grey": "#B3B3B3",
+      "text-grey": "#5B5B5B"
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'montserrat': ['Montserrat'],
+        'lato': ['Lato'],
+        'garamond': ['Garamond']
+      }
+    },
   },
   plugins: [require("@tailwindcss/forms")],
 }
