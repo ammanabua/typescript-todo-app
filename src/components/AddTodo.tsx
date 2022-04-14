@@ -42,7 +42,7 @@ export const AddTodo: React.FC = () => {
           <button className='text-3xl text-[#CC634F]' type="submit" aria-label="Add a task">
           +
           </button>
-          <input value={task} className='border-none ml-4 text-xl w-full' type="text" name="task" onChange={handleChange} placeholder="Add a task" />
+          <input value={task} className='border-none text-text-grey ml-4 text-xl w-full placeholder-place-grey' type="text" name="task" onChange={handleChange} placeholder="Add a task" />
       </div>
       <div className='flex justify-center items-center'>
           <div className='flex mr-3'>
